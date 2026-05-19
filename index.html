@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Principles of Financial Accounting – Course Checklist</title>
+<style>
+  /* ── Reset & base ── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /*
+    Brand palette (course color sheet):
+    Violet  #262D68  — primary; headers, section labels, primary button
+    Blue    #4691CE  — secondary; info badges, progress bar
+    Green   #0A713A  — tertiary; discussion badges (passes 4.5:1 on white)
+    Orange  #FF9F1C  — background tints only, with #262D68 text
+    Yellow  #D7DF23  — background tints only, with #262D68 text
+
+    All body text: Arial (system font, dyslexia-friendly, no Google Fonts dependency)
+    Minimum font size: 1rem = 16px = 12pt at 96dpi, applied everywhere
+  */
+  :root {
+    --brand-violet:    #262D68;
+    --brand-violet-lt: #eceef6;
+    --brand-blue:      #4691CE;
+    --brand-blue-lt:   #deeef9;
+    --brand-green:     #0A713A;
+    --brand-green-lt:  #d6f0e3;
+    --brand-orange-lt: #fff0d6;
+    --brand-yellow-lt: #fafbd6;
+    --brand-gray-lt:   #f0f0f2;
+    --brand-gray-mid:  #6b6b78;
+
+    --text-primary:   #1a1a2e;
+    --text-secondary: #3d3d52;
+    --bg-page:        #f4f5f9;
+    --bg-white:       #ffffff;
+    --border:         #c8cad8;
+    --border-light:   #e0e2ee;
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --focus-ring: 0 0 0 3px #4691CE;
+
+    /* Single font stack — Arial first, broad fallbacks */
+    --font: Arial, Helvetica, sans-serif;
+  }
+
+  /* 1rem = 16px = exactly 12pt at 96dpi */
+  html { font-size: 16px; }
+
+  body {
+    font-family: var(--font);
+    background: var(--bg-page);
+    color: var(--text-primary);
+    line-height: 1.7;
+    padding: 2rem 1rem 4rem;
+    font-size: 1rem;
+  }
+
+  /* ── Skip link ── */
+  .skip-link {
+    position: absolute;
+    top: -100%;
+    left: 1rem;
+    background: var(--brand-violet);
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+    font-size: 1rem;
+    font-family: var(--font);
+    text-decoration: none;
+    z-index: 9999;
+    transition: top 0.1s;
+  }
+  .skip-link:focus { top: 0; }
+
+  /* ── Layout ── */
+  .page-wrap { max-width: 760px; margin: 0 auto; }
+
+  /* ── Header ── */
+  .page-header { margin-bottom: 1.75rem; }
+  .page-header h1 {
+    font-family: var(--font);
+    font-size: 1.75rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--brand-violet);
+    line-height: 1.2;
+    margin-bottom: 0.3rem;
+    text-transform: uppercase;
+  }
+  .page-header .subtitle {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    font-style: italic;
+  }
+
+  /* ── Notice box ── */
+  .notice {
+    background: var(--brand-orange-lt);
+    border: 1.5px solid #f5c06a;
+    border-radius: var(--radius-md);
+    padding: 0.85rem 1rem;
+    font-size: 1rem;
+    font-family: var(--font);
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    display: flex;
+    gap: 0.6rem;
+    align-items: flex-start;
+  }
+  .notice svg { flex-shrink: 0; margin-top: 3px; color: #b36800; }
+
+  /* ── Progress bar ── */
+  .progress-wrap {
+    background: var(--bg-white);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.75rem;
+  }
+  .progress-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.5rem;
+  }
+  .progress-meta .prog-label { font-size: 1rem; color: var(--text-secondary); }
+  .progress-meta .prog-pct {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--brand-violet);
+  }
+  .progress-track {
+    height: 12px;
+    background: var(--brand-violet-lt);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border-light);
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--brand-violet);
+    border-radius: 10px;
+    transition: width 0.35s ease;
+  }
+
+  /* ── Toolbar ── */
+  .toolbar { display: flex; gap: 0.6rem; margin-bottom: 1.75rem; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-family: var(--font);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+    border: 1.5px solid var(--border);
+    background: var(--bg-white);
+    color: var(--text-primary);
+    text-decoration: none;
+  }
+  .btn:hover { background: var(--brand-gray-lt); border-color: var(--brand-gray-mid); }
+  .btn:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+  .btn-primary {
+    background: var(--brand-violet);
+    color: #fff;
+    border-color: var(--brand-violet);
+  }
+  .btn-primary:hover { background: #1a2050; border-color: #1a2050; }
+
+  /* ── Section headers ── */
+  .section-hdr {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.65rem 0.9rem;
+    border-radius: var(--radius-md);
+    margin: 2rem 0 0.5rem;
+    font-family: var(--font);
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .section-hdr .section-deadline {
+    margin-left: auto;
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+  .s1    { background: var(--brand-violet-lt); color: var(--brand-violet); border-left: 4px solid var(--brand-violet); }
+  .s2    { background: var(--brand-blue-lt);   color: #1a4f80;             border-left: 4px solid var(--brand-blue); }
+  .s3    { background: var(--brand-green-lt);  color: #054a25;             border-left: 4px solid var(--brand-green); }
+  .sexam { background: var(--brand-orange-lt); color: var(--brand-violet); border-left: 4px solid #FF9F1C; }
+  .sfinal{ background: var(--brand-yellow-lt); color: var(--brand-violet); border-left: 4px solid #b8c000; }
+
+  /* ── Chapter card ── */
+  .chapter-card {
+    background: var(--bg-white);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 0.9rem 1rem;
+    margin-bottom: 0.5rem;
+    transition: opacity 0.2s;
+  }
+  .chapter-card.completed { opacity: 0.52; }
+  .chapter-card.completed .card-title-text { text-decoration: line-through; }
+
+  .card-title-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    margin-bottom: 0.6rem;
+  }
+  .card-title-row input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    margin-top: 3px;
+    accent-color: var(--brand-violet);
+    cursor: pointer;
+  }
+  .card-title-row input[type="checkbox"]:focus-visible {
+    outline: 3px solid var(--brand-blue);
+    outline-offset: 2px;
+  }
+  .card-title-text {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.4;
+  }
+
+  /* steps */
+  .steps-list { list-style: none; padding-left: 1.7rem; margin-bottom: 0.7rem; }
+  .steps-list li { margin-bottom: 0.35rem; }
+  .steps-list label {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 1rem;
+    font-family: var(--font);
+    color: var(--text-secondary);
+    cursor: pointer;
+    line-height: 1.6;
+  }
+  .steps-list label.done { text-decoration: line-through; opacity: 0.6; }
+  .steps-list input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+    margin-top: 3px;
+    accent-color: var(--brand-violet);
+    cursor: pointer;
+  }
+  .steps-list input[type="checkbox"]:focus-visible {
+    outline: 3px solid var(--brand-blue);
+    outline-offset: 2px;
+  }
+
+  /* badges — 1rem minimum, dark-on-light for contrast */
+  .badges { display: flex; flex-wrap: wrap; gap: 6px; padding-left: 1.7rem; }
+  .badge {
+    font-size: 1rem;
+    font-family: var(--font);
+    font-weight: 700;
+    padding: 3px 12px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+  .badge-disc    { background: var(--brand-green-lt);  color: #054a25; }
+  .badge-peer    { background: var(--brand-violet-lt); color: var(--brand-violet); }
+  .badge-mylab   { background: var(--brand-blue-lt);   color: #1a4f80; }
+  .badge-suggest { background: var(--brand-orange-lt); color: var(--brand-violet); }
+  .badge-nodisc  { background: var(--brand-gray-lt);   color: #3d3d52; }
+
+  /* exam row */
+  .exam-card {
+    background: var(--bg-white);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .exam-card input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    accent-color: var(--brand-violet);
+    cursor: pointer;
+  }
+  .exam-card input[type="checkbox"]:focus-visible {
+    outline: 3px solid var(--brand-blue);
+    outline-offset: 2px;
+  }
+  .exam-label {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    flex: 1;
+  }
+  .exam-card.completed .exam-label { text-decoration: line-through; opacity: 0.6; }
+
+  /* final notice */
+  .final-notice {
+    margin-top: 2rem;
+    font-size: 1rem;
+    font-family: var(--font);
+    color: var(--text-secondary);
+    padding: 0.75rem 1rem;
+    border-left: 4px solid var(--brand-violet);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    background: var(--bg-white);
+  }
+  .final-notice strong { color: var(--text-primary); }
+
+  /* ── Legend ── */
+  .legend {
+    background: var(--bg-white);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 0.9rem 1rem;
+    margin-bottom: 1.75rem;
+  }
+  .legend-title {
+    font-family: var(--font);
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+  }
+  .legend-items { display: flex; flex-wrap: wrap; gap: 6px; }
+
+  /* ── Focus visible fallback ── */
+  *:focus { outline: 3px solid var(--brand-blue); outline-offset: 2px; }
+  *:focus:not(:focus-visible) { outline: none; }
+
+  /* ── Print styles — all text 12pt minimum ── */
+  @media print {
+    body {
+      background: white;
+      padding: 0.5rem;
+      font-size: 12pt;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .toolbar, .notice, .skip-link { display: none !important; }
+    .progress-wrap, .legend { display: none; }
+    .chapter-card, .exam-card { break-inside: avoid; border: 1px solid #ccc; }
+    .section-hdr { break-after: avoid; font-size: 12pt; }
+    .page-header h1 { font-size: 16pt; color: #262D68; }
+    .badge { font-size: 12pt; border: 1px solid #ccc; }
+    .card-title-text, .exam-label, .steps-list label,
+    .final-notice, .section-hdr { font-size: 12pt; }
+    a { text-decoration: none; color: inherit; }
+    .chapter-card.completed { opacity: 1; }
+    .chapter-card.completed .card-title-text { text-decoration: none; }
+    .steps-list label.done { text-decoration: none; opacity: 1; }
+    .s1, .s2, .s3, .sexam, .sfinal { border-left-width: 4px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 520px) {
+    .section-hdr .section-deadline { display: none; }
+    .badges { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<div class="page-wrap">
+
+  <header class="page-header">
+    <h1>Principles of Financial Accounting</h1>
+    <p class="subtitle">Course Checklist &ndash; Summer 2026</p>
+  </header>
+
+  <!-- Storage notice -->
+  <div class="notice" role="note" aria-label="Important note about saving your progress">
+    <svg aria-hidden="true" focusable="false" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+    </svg>
+    <div>
+      <strong>Your progress is saved automatically</strong> in this browser on this device.
+      If you switch browsers, clear your browser data, or open this file on a different device, your checkmarks will not carry over.
+      To preserve your progress, use the same browser on the same device each time you open this file.
+    </div>
+  </div>
+
+  <!-- Legend -->
+  <div class="legend" aria-label="Badge legend">
+    <div class="legend-title">Badge key</div>
+    <div class="legend-items">
+      <span class="badge badge-disc">Discussion due date</span>
+      <span class="badge badge-peer">Peer replies due (+1 day)</span>
+      <span class="badge badge-mylab">MyLab &amp; Canvas hard deadline</span>
+      <span class="badge badge-suggest">Suggested completion date</span>
+      <span class="badge badge-nodisc">No discussion for this chapter</span>
+    </div>
+  </div>
+
+  <!-- Progress bar -->
+  <div class="progress-wrap" aria-label="Overall progress">
+    <div class="progress-meta">
+      <span class="prog-label" id="prog-label" aria-live="polite">0 of 22 chapters checked</span>
+      <span class="prog-pct" id="prog-pct" aria-hidden="true">0%</span>
+    </div>
+    <div class="progress-track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-labelledby="prog-label" id="prog-bar">
+      <div class="progress-fill" id="prog-fill" style="width:0%"></div>
+    </div>
+  </div>
+
+  <!-- Toolbar -->
+  <div class="toolbar" role="group" aria-label="Checklist actions">
+    <button class="btn btn-primary" onclick="window.print()" aria-label="Print this checklist">
+      <svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+      Print checklist
+    </button>
+    <button class="btn" onclick="resetAll()" aria-label="Reset all checkboxes to unchecked">
+      <svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.5"/></svg>
+      Reset all
+    </button>
+  </div>
+
+  <!-- ────────────────────────────────────────────── -->
+  <main id="main-content">
+
+    <!-- INTRO -->
+    <div class="section-hdr s1" role="heading" aria-level="2">
+      <svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+      Course Introduction
+    </div>
+
+    <div class="chapter-card" id="card-intro" data-id="intro">
+      <div class="card-title-row">
+        <input type="checkbox" id="chk-intro" class="chapter-check" aria-describedby="dates-intro" aria-label="Mark Introduction and Discipline Literary Assignment as complete">
+        <label for="chk-intro" class="card-title-text">Introduction &amp; Discipline Literary Assignment</label>
+      </div>
+      <ul class="steps-list" aria-label="Steps for Introduction">
+        <li><label><input type="checkbox" class="step-check" data-parent="intro" aria-label="Review module introduction content"> Review module introduction content</label></li>
+        <li><label><input type="checkbox" class="step-check" data-parent="intro" aria-label="Complete Discipline Literary Assignment"> Complete Discipline Literary Assignment</label></li>
+      </ul>
+      <div class="badges" id="dates-intro">
+        <span class="badge badge-mylab">Assignment &amp; Discussion due 6/10</span>
+      </div>
+    </div>
+
+    <!-- SECTION 1 -->
+    <div class="section-hdr s1" role="heading" aria-level="2">
+      <svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      Section 1 &ndash; Chapters 1&ndash;4
+      <span class="section-deadline">Section hard deadline: 6/24/26</span>
+    </div>
+
+    <!-- Ch 1 -->
+    <div class="chapter-card" id="card-ch1" data-id="ch1">
+      <div class="card-title-row">
+        <input type="checkbox" id="chk-ch1" class="chapter-check" aria-describedby="dates-ch1" aria-label="Mark Chapter 1 as complete">
+        <label for="chk-ch1" class="card-title-text">Chapter 1 &ndash; Introduction to Accounting</label>
+      </div>
+      <ul class="steps-list" aria-label="Steps for Chapter 1">
+        <li><label><input type="checkbox" class="step-check" data-parent="ch1" aria-label="Review chapter notes or video in module"> Review chapter notes/video in module</label></li>
+        <li><label><input type="checkbox" class="step-check" data-parent="ch1" aria-label="Complete Chapter 1 assignment in MyLab and Canvas"> Complete Chapter 1 assignment in MyLab &amp; Canvas</label></li>
+        <li><label><input type="checkbox" class="step-check" data-parent="ch1" aria-label="Post Chapter 1 discussion by suggested date"> Post Chapter 1 discussion by suggested date</label></li>
+        <li><label><input type="checkbox" class="step-check" data-parent="ch1" aria-label="Reply to at least 2 peers within 1 day of discussion due date"> Reply to at least 2 peers (within 1 day of discussion due date)</label></li>
+      </ul>
+      <div class="badges" id="dates-ch1">
+        <span class="badge badge-disc">Discussion due 6/13</span>
+        <span class="badge badge-peer">Peer replies due 6/14</span>
+        <span class="badge badge-mylab">MyLab/Canvas due 6/24</span>
+        <span class="badge badge-suggest">Suggested: complete by 6/13</span>
+      </div>
+    </div>
+
+    <!-- Ch 2 -->
+    <div class="chapter-card" id="card-ch2" data-id="ch2">
+      <div class="card-title-row">
+        <input type="checkbox" id="chk-ch2" class="chapter-check" aria-describedby="dates-ch2" aria-label="Mark Chapter 2 as complete">
+        <label for="chk-ch2" class="card-title-text">Chapter 2 &ndash; Accounting Transactions</label>
+      </div>
+      <ul class="steps-list" aria-label="Steps for Chapter 2">
+        <li><label><input type="checkbox" class="step-check" data-parent="ch2" aria-label="Review chapter notes or video in module"> Review chapter notes/video in module</label></li>
+        <li><label><input type="checkbox" class="step-check" data-parent="ch2" aria-label="Complete Chapter 2 assignment in MyLab and Canvas"> Complete Chapter 2 assignment in MyLab &amp; Canvas</label></li>
+        <li><label><input type="checkbox" class="step-check" data-parent="ch2" aria-label="Post Chapter 2 discussion by suggested date"> Post Chapter 2 discussion by suggested date</label></li>
+        <li><label><input type="checkbox" class="step-check" data-parent="ch2" aria-label="Reply to at least 2 peers within 1 day of discussion due date"> Reply to at least 2 peers (within 1 day of discussion due date)</label></li>
+      </ul>
+      <div class="badges" id="dates-ch2">
+        <span class="badge badge-disc">Discussion due 6/21</span>
+        <span class="badge badge-peer">Peer replies due 6/22</span>
+        <span class="badge badge-mylab">MyLab/Canvas due 6/24</span>
+        <span class="badge badge-suggest">Suggested: complete by 6/17</span>
+      </div>
+    </div>
+
+    <!-- Ch 3 -->
+    <div class="chapter-card" id="card-ch3" data-id="ch3">
+      <div class="card-title-row">
+        <input type="checkbox" id="chk-ch3" class="chapter-check" aria-describedby="dates-ch3" aria-label="Mark Chapter 3 as complete">
+        <label for="chk-ch3" class="card-title-text">Chapter 3 &ndash; Adjusting Entries</label>
+      </div>
+      <ul class="steps-list" aria-label="Steps for Chapter 3">
+        <li><label><input type="checkbox" class="step-check" data-parent="ch3" aria-label="Review chapter notes or video in module"> Review chapter notes/video in module</label></li>
+        <li><label><input type="checkbox" class="step-check" data-parent="ch3" aria-label="Complete Chapter 3 assignment in MyLab and Canvas"> Complete Chapter 3 assignment in MyLab &amp; Canvas</label></li>
+        <li><label><input type="checkbox" class="step-check" data-parent="ch3" aria-label="Note: No separate discussion, combined with Chapter 4"> <em>No separate discussion &ndash; discussion is combined with Chapter 4</em></label></li>
+      </ul>
+      <div class="badges" id="dates-ch3">
+        <span class="badge badge-nodisc">No separate discussion</span>
+        <span class="badge badge-mylab">MyLab/Canvas due 6/24</span>
+        <span class="badge badge-suggest">Suggested: complete by 6/20</span>
+      </div>
+    </div>
+
+    <!-- Ch 4 -->
+    <div class="chapter-card" id="card-ch4" data-id="ch4">
+      <div class="card-title-row">
+        <input type="checkbox" id="chk-ch4" class="chapter-check" aria-describedby="dates-ch4" aria-label="Mark Chapter 4 as complete">
+        <label for="chk-ch4" class="card-title-text">Chapter 4 &ndash; Completing the Accounting Cycle</label>
+      </div>
+      <ul class="steps-list" aria-label="Steps for Chapter 4">
+        <li><label><input type="checkbox" class="step-check" data-parent="ch4" aria-label="Review chapter notes or video in module"> Review chapter notes/video in module</label></li>
+        <li><label><input type="checkbox" class="step-check" data-parent="ch4" aria-label="Complete Chapter 4 assignment in MyLab and Canvas"> Complete Chapter 4 assignment in MyLab &amp; Canvas</label></li>
+        <li><label><input type="checkbox" class="step-check" data-parent="ch4" aria-label="Post combined Chapters 3 and 4 discussion by due date"> Post combined Ch. 3/4 discussion by due date</label></li>
+        <li><label><input type="checkbox" class="step-check" data-parent="ch4" aria-label="Reply to at least 2 peers within 1 day of discussion due date"> Reply to at least 2 peers (within 1 day of discussion due date)</label></li>
+      </ul>
+      <div class="badges" id="dates-ch4">
+        <span class="badge badge-disc">Discussion due 6/24</span>
+        <span class="badge badge-peer">Peer replies due 6/25</span>
+        <span class="badge badge-mylab">MyLab/Canvas due 6/24</span>
+        <span class="badge badge-suggest">Suggested: complete by 6/23</span>
+      </div>
+    </div>
+
+    <!-- Exam 1 -->
+    <div class="section-hdr sexam" role="heading" aria-level="2">
+      <svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      Exam 1
+    </div>
+    <div class="exam-card" id="card-ex1" data-id="ex1">
+      <input type="checkbox" id="chk-ex1" class="chapter-check" aria-label="Mark Exam 1 Concept Review and Exam 1 as complete">
+      <label for="chk-ex1" class="exam-label">Exam 1 Concept Review &amp; Exam 1</label>
+      <span class="badge badge-mylab">Due 6/24</span>
+    </div>
+
+    <!-- SECTION 2 -->
+    <div class="section-hdr s2" role="heading" aria-level="2">
+      <svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      Section 2 &ndash; Chapters 5&ndash;9
+      <span class="section-deadline">Section hard deadline: 7/22/26</span>
+    </div>
+
+    <!-- Ch 5 -->
+    <div class="chapter-card" id="card-ch5" data-id="ch5">
+      <div class="card-title-row">
+        <input type="checkbox" id="chk-ch5" class="chapter-check" aria-describedby="dates-ch5" aria-label="Mark Chapter 5 as complete">
+        <label for="chk-ch5" class="card-title-text">Chapter 5 &ndash; Merchandising Sales</label>
+      </div>
+      <ul class="steps-list" aria-label="Steps for Chapter 5">
+        <li><label><input type="checkbox" class="step-check" data-parent="ch5" aria-label="Review chapter notes or video in module"> Review chapter notes/video in module</label></li>
+        <li><label><input type="checkbox" class="step-check" data-parent="ch5" aria-label="Complete Chapter 5 assignment in MyLab and Canvas"> Complete Chapter 5 assignment in MyLab &amp; Canvas</label></li>
+      </ul>
+      <div class="badges" id="dates-ch5">
+        <span class="badge badge-nodisc">No discussion</span>
+        <span class="badge badge-mylab">MyLab/Canvas due 7/22</span>
+        <span class="badge badge-suggest">Suggested: complete by 6/27</span>
+      </div>
+    </div>
+
+    <!-- Ch 6 -->
+    <div class="chapter-card" id="card-ch6" data-id="ch6">
+      <div class="card-title-row">
+        <input type="checkbox" id="chk-ch6" class="chapter-check" aria-describedby="dates-ch6" aria-label="Mark Chapter 6 as complete">
+        <label for="chk-ch6" class="card-title-text">Chapter 6 &ndash; Inventory</label>
+      </div>
+      <ul class="steps-list" aria-label="Steps for Chapter 6">
+        <li><label><input type="checkbox" class="step-check" data-parent="ch6" aria-label="Review chapter notes or video in module"> Review chapter notes/video in module</label></li>
+        <li><label><input type="checkbox" class="step-check" data-parent="ch6" aria-label="Complete Chapter 6 assignment in MyLab and Canvas"> Complete Chapter 6 assignment in MyLab &amp; Canvas</label></li>
+        <li><label><input type="checkbox" class="step-check" data-parent="ch6" aria-label="Post Chapter 6 discussion by suggested date"> Post Chapter 6 discussion by suggested date</label></li>
+        <li><label><input type="checkbox" class="step-check" data-parent="ch6" aria-label="Reply to at least 2 peers within 1 day of discussion due date"> Reply to at least 2 peers (within 1 day of discussion due date)</label></li>
+      </ul>
+      <div class="badges" id="dates-ch6">
+        <span class="badge badge-disc">Discussion due 7/1</span>
+        <span class="badge badge-peer">Peer replies due 7/2</span>
+        <span class="badge badge-mylab">MyLab/Canvas due 7/22</span>
+        <span class="badge badge-suggest">Suggested: complete by 7/1</span>
+      </div>
+    </div>
+
+    <!-- Ch 7 -->
+    <div class="chapter-card" id="card-ch7" data-id="ch7">
+      <div class="card-title-row">
+        <input type="checkbox" id="chk-ch7" class="chapter-check" aria-describedby="dates-ch7" aria-label="Mark Chapter 7 as complete">
+        <label for="chk-ch7" class="card-title-text">Chapter 7 &ndash; Cash and Internal Controls</label>
+      </div>
+      <ul class="steps-list" aria-label="Steps for Chapter 7">
+        <li><label><input type="checkbox" class="step-check" data-parent="ch7" aria-label="Review chapter notes or video in module"> Review chapter notes/video in module</label></li>
+        <li><label><input type="checkbox" class="step-check" data-parent="ch7" aria-label="Complete Chapter 7 assignment in MyLab and Canvas"> Complete Chapter 7 assignment in MyLab &amp; Canvas</label></li>
+        <li><label><input type="checkbox" class="step-check" data-parent="ch7" aria-label="Post Chapter 7 discussion by suggested date"> Post Chapter 7 discussion by suggested date</label></li>
+        <li><label><input type="checkbox" class="step-check" data-parent="ch7" aria-label="Reply to at least 2 peers within 1 day of discussion due date"> Reply to at least 2 peers (within 1 day of discussion due date)</label></li>
+      </ul>
+      <div class="badges" id="dates-ch7">
+        <span class="badge badge-disc">Discussion due 7/8</span>
+        <span class="badge badge-peer">Peer replies due 7/9</span>
+        <span class="badge badge-mylab">MyLab/Canvas due 7/22</span>
+        <span class="badge badge-suggest">Suggested: complete by 7/8</span>
+      </div>
+    </div>
+
+    <!-- Ch 8 -->
+    <div class="chapter-card" id="card-ch8" data-id="ch8">
+      <div class="card-title-row">
+        <input type="checkbox" id="chk-ch8" class="chapter-check" aria-describedby="dates-ch8" aria-label="Mark Chapter 8 as complete">
+        <label for="chk-ch8" class="card-title-text">Chapter 8 &ndash; Accounts Receivable</label>
+      </div>
+      <ul class="steps-list" aria-label="Steps for Chapter 8">
+        <li><label><input type="checkbox" class="step-check" data-parent="ch8" aria-label="Review chapter notes or video in module"> Review chapter notes/video in module</label></li>
+        <li><label><input type="checkbox" class="step-check" data-parent="ch8" aria-label="Complete Chapter 8 assignment in MyLab and Canvas"> Complete Chapter 8 assignment in MyLab &amp; Canvas</label></li>
+      </ul>
+      <div class="badges" id="dates-ch8">
+        <span class="badge badge-nodisc">No discussion</span>
+        <span class="badge badge-mylab">MyLab/Canvas due 7/22</span>
+        <span class="badge badge-suggest">Suggested: complete by 7/15</span>
+      </div>
+    </div>
+
+    <!-- Ch 9 -->
+    <div class="chapter-card" id="card-ch9" data-id="ch9">
+      <div class="card-title-row">
+        <input type="checkbox" id="chk-ch9" class="chapter-check" aria-describedby="dates-ch9" aria-label="Mark Chapter 9 as complete">
+        <label for="chk-ch9" class="card-title-text">Chapter 9 &ndash; Long-Term Assets</label>
+      </div>
+      <ul class="steps-list" aria-label="Steps for Chapter 9">
+        <li><label><input type="checkbox" class="step-check" data-parent="ch9" aria-label="Review chapter notes or video in module"> Review chapter notes/video in module</label></li>
+        <li><label><input type="checkbox" class="step-check" data-parent="ch9" aria-label="Complete Chapter 9 assignment in MyLab and Canvas"> Complete Chapter 9 assignment in MyLab &amp; Canvas</label></li>
+        <li><label><input type="checkbox" class="step-check" data-parent="ch9" aria-label="Post Chapter 9 discussion by suggested date"> Post Chapter 9 discussion by suggested date</label></li>
+        <li><label><input type="checkbox" class="step-check" data-parent="ch9" aria-label="Reply to at least 2 peers within 1 day of discussion due date"> Reply to at least 2 peers (within 1 day of discussion due date)</label></li>
+      </ul>
+      <div class="badges" id="dates-ch9">
+        <span class="badge badge-disc">Discussion due 7/18</span>
+        <span class="badge badge-peer">Peer replies due 7/19</span>
+        <span class="badge badge-mylab">MyLab/Canvas due 7/22</span>
+        <span class="badge badge-suggest">Suggested: complete by 7/20</span>
+      </div>
+    </div>
+
+    <!-- Exam 2 -->
+    <div class="section-hdr sexam" role="heading" aria-level="2">
+      <svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      Exam 2
+    </div>
+    <div class="exam-card" id="card-ex2" data-id="ex2">
+      <input type="checkbox" id="chk-ex2" class="chapter-check" aria-label="Mark Exam 2 Concept Review and Exam 2 as complete">
+      <label for="chk-ex2" class="exam-label">Exam 2 Concept Review &amp; Exam 2</label>
+      <span class="badge badge-mylab">Due 7/22</span>
+    </div>
+
+    <!-- SECTION 3 -->
+    <div class="section-hdr s3" role="heading" aria-level="2">
+      <svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      Section 3 &ndash; Chapters 11&ndash;15
+      <span class="section-deadline">Section hard deadline: 8/12/26</span>
+    </div>
+
+    <!-- Ch 11 -->
+    <div class="chapter-card" id="card-ch11" data-id="ch11">
+      <div class="card-title-row">
+        <input type="checkbox" id="chk-ch11" class="chapter-check" aria-describedby="dates-ch11" aria-label="Mark Chapter 11 as complete">
+        <label for="chk-ch11" class="card-title-text">Chapter 11 &ndash; Current Liabilities</label>
+      </div>
+      <ul class="steps-list" aria-label="Steps for Chapter 11">
+        <li><label><input type="checkbox" class="step-check" data-parent="ch11" aria-label="Review chapter notes or video in module"> Review chapter notes/video in module</label></li>
+        <li><label><input type="checkbox" class="step-check" data-parent="ch11" aria-label="Complete Chapter 11 assignment in MyLab and Canvas"> Complete Chapter 11 assignment in MyLab &amp; Canvas</label></li>
+        <li><label><input type="checkbox" class="step-check" data-parent="ch11" aria-label="Post Chapter 11 discussion by suggested date"> Post Chapter 11 discussion by suggested date</label></li>
+        <li><label><input type="checkbox" class="step-check" data-parent="ch11" aria-label="Reply to at least 2 peers within 1 day of discussion due date"> Reply to at least 2 peers (within 1 day of discussion due date)</label></li>
+      </ul>
+      <div class="badges" id="dates-ch11">
+        <span class="badge badge-disc">Discussion due 7/25</span>
+        <span class="badge badge-peer">Peer replies due 7/26</span>
+        <span class="badge badge-mylab">MyLab/Canvas due 8/12</span>
+        <span class="badge badge-suggest">Suggested: complete by 7/29</span>
+      </div>
+    </div>
+
+    <!-- Ch 12 -->
+    <div class="chapter-card" id="card-ch12" data-id="ch12">
+      <div class="card-title-row">
+        <input type="checkbox" id="chk-ch12" class="chapter-check" aria-describedby="dates-ch12" aria-label="Mark Chapter 12 as complete">
+        <label for="chk-ch12" class="card-title-text">Chapter 12 &ndash; Long-Term Liabilities</label>
+      </div>
+      <ul class="steps-list" aria-label="Steps for Chapter 12">
+        <li><label><input type="checkbox" class="step-check" data-parent="ch12" aria-label="Review chapter notes or video in module"> Review chapter notes/video in module</label></li>
+        <li><label><input type="checkbox" class="step-check" data-parent="ch12" aria-label="Complete Chapter 12 assignment in MyLab and Canvas"> Complete Chapter 12 assignment in MyLab &amp; Canvas</label></li>
+      </ul>
+      <div class="badges" id="dates-ch12">
+        <span class="badge badge-nodisc">No discussion</span>
+        <span class="badge badge-mylab">MyLab/Canvas due 8/12</span>
+        <span class="badge badge-suggest">Suggested: complete by 8/1</span>
+      </div>
+    </div>
+
+    <!-- Ch 13 -->
+    <div class="chapter-card" id="card-ch13" data-id="ch13">
+      <div class="card-title-row">
+        <input type="checkbox" id="chk-ch13" class="chapter-check" aria-describedby="dates-ch13" aria-label="Mark Chapter 13 as complete">
+        <label for="chk-ch13" class="card-title-text">Chapter 13 &ndash; Equity</label>
+      </div>
+      <ul class="steps-list" aria-label="Steps for Chapter 13">
+        <li><label><input type="checkbox" class="step-check" data-parent="ch13" aria-label="Review chapter notes or video in module"> Review chapter notes/video in module</label></li>
+        <li><label><input type="checkbox" class="step-check" data-parent="ch13" aria-label="Complete Chapter 13 assignment in MyLab and Canvas"> Complete Chapter 13 assignment in MyLab &amp; Canvas</label></li>
+        <li><label><input type="checkbox" class="step-check" data-parent="ch13" aria-label="Post Chapter 13 discussion by suggested date"> Post Chapter 13 discussion by suggested date</label></li>
+        <li><label><input type="checkbox" class="step-check" data-parent="ch13" aria-label="Reply to at least 2 peers within 1 day of discussion due date"> Reply to at least 2 peers (within 1 day of discussion due date)</label></li>
+      </ul>
+      <div class="badges" id="dates-ch13">
+        <span class="badge badge-disc">Discussion due 8/1</span>
+        <span class="badge badge-peer">Peer replies due 8/2</span>
+        <span class="badge badge-mylab">MyLab/Canvas due 8/12</span>
+        <span class="badge badge-suggest">Suggested: complete by 8/5</span>
+      </div>
+    </div>
+
+    <!-- Ch 14 -->
+    <div class="chapter-card" id="card-ch14" data-id="ch14">
+      <div class="card-title-row">
+        <input type="checkbox" id="chk-ch14" class="chapter-check" aria-describedby="dates-ch14" aria-label="Mark Chapter 14 as complete">
+        <label for="chk-ch14" class="card-title-text">Chapter 14 &ndash; Cash Flow Statement</label>
+      </div>
+      <ul class="steps-list" aria-label="Steps for Chapter 14">
+        <li><label><input type="checkbox" class="step-check" data-parent="ch14" aria-label="Review chapter notes or video in module"> Review chapter notes/video in module</label></li>
+        <li><label><input type="checkbox" class="step-check" data-parent="ch14" aria-label="Complete Chapter 14 assignment in MyLab and Canvas"> Complete Chapter 14 assignment in MyLab &amp; Canvas</label></li>
+        <li><label><input type="checkbox" class="step-check" data-parent="ch14" aria-label="Post Chapter 14 discussion by suggested date"> Post Chapter 14 discussion by suggested date</label></li>
+        <li><label><input type="checkbox" class="step-check" data-parent="ch14" aria-label="Reply to at least 2 peers within 1 day of discussion due date"> Reply to at least 2 peers (within 1 day of discussion due date)</label></li>
+      </ul>
+      <div class="badges" id="dates-ch14">
+        <span class="badge badge-disc">Discussion due 8/8</span>
+        <span class="badge badge-peer">Peer replies due 8/9</span>
+        <span class="badge badge-mylab">MyLab/Canvas due 8/12</span>
+        <span class="badge badge-suggest">Suggested: complete by 8/8</span>
+      </div>
+    </div>
+
+    <!-- Ch 15 -->
+    <div class="chapter-card" id="card-ch15" data-id="ch15">
+      <div class="card-title-row">
+        <input type="checkbox" id="chk-ch15" class="chapter-check" aria-describedby="dates-ch15" aria-label="Mark Chapter 15 as complete">
+        <label for="chk-ch15" class="card-title-text">Chapter 15 &ndash; Financial Ratios</label>
+      </div>
+      <ul class="steps-list" aria-label="Steps for Chapter 15">
+        <li><label><input type="checkbox" class="step-check" data-parent="ch15" aria-label="Review chapter notes or video in module"> Review chapter notes/video in module</label></li>
+        <li><label><input type="checkbox" class="step-check" data-parent="ch15" aria-label="Complete Chapter 15 assignment in MyLab and Canvas"> Complete Chapter 15 assignment in MyLab &amp; Canvas</label></li>
+      </ul>
+      <div class="badges" id="dates-ch15">
+        <span class="badge badge-nodisc">No discussion</span>
+        <span class="badge badge-mylab">MyLab/Canvas due 8/12</span>
+        <span class="badge badge-suggest">Suggested: complete by 8/10</span>
+      </div>
+    </div>
+
+    <!-- Exam 3 -->
+    <div class="section-hdr sexam" role="heading" aria-level="2">
+      <svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      Exam 3
+    </div>
+    <div class="exam-card" id="card-ex3" data-id="ex3">
+      <input type="checkbox" id="chk-ex3" class="chapter-check" aria-label="Mark Exam 3 Concept Review and Exam 3 as complete">
+      <label for="chk-ex3" class="exam-label">Exam 3 Concept Review &amp; Exam 3</label>
+      <span class="badge badge-mylab">Due 8/12</span>
+    </div>
+
+    <!-- Final Exam -->
+    <div class="section-hdr sfinal" role="heading" aria-level="2">
+      <svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      Final Exam
+    </div>
+    <div class="exam-card" id="card-final" data-id="final">
+      <input type="checkbox" id="chk-final" class="chapter-check" aria-label="Mark Final Exam Review and Final Exam as complete">
+      <label for="chk-final" class="exam-label">Final Exam Review &amp; Final Exam</label>
+      <span class="badge badge-mylab">Due 8/15</span>
+    </div>
+
+    <div class="final-notice" role="note">
+      <strong>Final submission deadline:</strong> All assignments except the Final Exam have a final submission deadline of <strong>8/14/26</strong>.
+      The suggested completion dates above are your guide to staying on pace throughout the summer.
+    </div>
+
+  </main>
+</div>
+
+<script>
+  var STORE_KEY = 'acct_checklist_summer2026';
+
+  function saveState() {
+    var state = {};
+    document.querySelectorAll('input[type="checkbox"]').forEach(function(cb) {
+      state[cb.id || cb.getAttribute('data-key')] = cb.checked;
+    });
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch(e) {}
+  }
+
+  function loadState() {
+    var raw;
+    try { raw = localStorage.getItem(STORE_KEY); } catch(e) {}
+    if (!raw) return;
+    var state = {};
+    try { state = JSON.parse(raw); } catch(e) { return; }
+    document.querySelectorAll('input[type="checkbox"]').forEach(function(cb, i) {
+      var key = cb.id || cb.getAttribute('data-key');
+      if (!key) { key = 'cb_' + i; cb.setAttribute('data-key', key); }
+      if (state[key] !== undefined) {
+        cb.checked = state[key];
+        if (cb.checked) applyVisual(cb);
+      }
+    });
+    updateProgress();
+  }
+
+  function applyVisual(cb) {
+    if (cb.classList.contains('chapter-check')) {
+      var card = cb.closest('.chapter-card') || cb.closest('.exam-card');
+      if (card) {
+        if (cb.checked) card.classList.add('completed');
+        else card.classList.remove('completed');
+      }
+    }
+    if (cb.classList.contains('step-check')) {
+      var lbl = cb.closest('label');
+      if (lbl) {
+        if (cb.checked) lbl.classList.add('done');
+        else lbl.classList.remove('done');
+      }
+    }
+  }
+
+  function updateProgress() {
+    var all = document.querySelectorAll('.chapter-check');
+    var checked = document.querySelectorAll('.chapter-check:checked').length;
+    var total = all.length;
+    var pct = total ? Math.round((checked / total) * 100) : 0;
+    document.getElementById('prog-label').textContent = checked + ' of ' + total + ' chapters checked';
+    document.getElementById('prog-pct').textContent = pct + '%';
+    document.getElementById('prog-fill').style.width = pct + '%';
+    document.getElementById('prog-bar').setAttribute('aria-valuenow', pct);
+  }
+
+  document.querySelectorAll('input[type="checkbox"]').forEach(function(cb) {
+    cb.addEventListener('change', function() {
+      applyVisual(this);
+      updateProgress();
+      saveState();
+    });
+  });
+
+  function resetAll() {
+    if (!confirm('Reset all checkboxes? This cannot be undone.')) return;
+    document.querySelectorAll('input[type="checkbox"]').forEach(function(cb) {
+      cb.checked = false;
+      applyVisual(cb);
+    });
+    updateProgress();
+    saveState();
+  }
+
+  loadState();
+</script>
+</body>
+</html>
