@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Managerial Accounting – Course Checklist</title>
+<style>
+  :root{
+    --teal:#5EC1D5;
+    --rose:#D66380;
+    --periwinkle:#90A7D3;
+    --gold:#FCBA28;
+    --orange:#E45F2E;
+    --sage:#5A6F61;
+    --bg:#FAF8F4;
+    --card-bg:#FFFFFF;
+    --text:#2E2E2E;
+    --border:#E0DED8;
+    --ink:#1A1A1A;
+    --orange-deep:#C0431F;
+    --orange-deep-hover:#A8391A;
+    --muted:#6B6B6B;
+    --focus-ring:#1A1A1A;
+  }
+
+  *{box-sizing:border-box;}
+
+  /* Visible focus indicator for keyboard users (WCAG 2.4.7) */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  label:focus-within input{
+    outline:3px solid var(--focus-ring);
+    outline-offset:2px;
+  }
+
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:Verdana, Geneva, sans-serif;
+    line-height:1.5;
+    padding-bottom:60px;
+  }
+
+  a.skip-link{
+    position:absolute;
+    left:-9999px;
+    top:auto;
+  }
+  a.skip-link:focus{
+    left:10px;
+    top:10px;
+    background:var(--sage);
+    color:#fff;
+    padding:8px 14px;
+    border-radius:6px;
+    z-index:999;
+  }
+
+  header.page-header{
+    background:linear-gradient(135deg, var(--teal), var(--periwinkle));
+    color:var(--ink);
+    padding:36px 20px 28px;
+    text-align:center;
+  }
+
+  header.page-header h1{
+    font-family:Georgia, 'Times New Roman', serif;
+    font-weight:bold;
+    font-size:2rem;
+    margin:0 0 6px;
+  }
+
+  header.page-header p.subtitle{
+    margin:0;
+    font-size:1.05rem;
+  }
+
+  main{
+    max-width:880px;
+    margin:0 auto;
+    padding:24px 20px 0;
+  }
+
+  .save-note{
+    background:#fff;
+    border:1px solid var(--border);
+    border-left:5px solid var(--periwinkle);
+    border-radius:8px;
+    padding:14px 18px;
+    font-size:1rem;
+    margin-bottom:22px;
+  }
+
+  .badge-key{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:16px 18px;
+    margin-bottom:22px;
+  }
+
+  .badge-key h2{
+    font-family:Georgia, serif;
+    font-size:1.05rem;
+    margin:0 0 10px;
+  }
+
+  .badge{
+    display:inline-block;
+    font-size:1rem;
+    font-weight:bold;
+    padding:5px 12px;
+    border-radius:20px;
+    color:var(--ink);
+    margin:4px 6px 4px 0;
+    white-space:nowrap;
+  }
+
+  .badge.due{ background:var(--orange); }
+  .badge.info{ background:var(--periwinkle); }
+  .badge.exam{ background:var(--rose); }
+  .badge.final{ background:var(--gold); color:var(--ink); }
+
+  .progress-wrap{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:16px 18px;
+    margin-bottom:24px;
+  }
+
+  .progress-wrap .progress-label{
+    display:flex;
+    justify-content:space-between;
+    font-size:1rem;
+    margin-bottom:8px;
+    font-weight:bold;
+  }
+
+  .progress-bar-track{
+    background:#EDEAE3;
+    border-radius:20px;
+    height:18px;
+    overflow:hidden;
+  }
+
+  .progress-bar-fill{
+    height:100%;
+    background:linear-gradient(90deg, var(--teal), var(--sage));
+    width:0%;
+    transition:width 0.3s ease;
+  }
+
+  .toolbar{
+    display:flex;
+    gap:10px;
+    justify-content:flex-end;
+    margin-bottom:20px;
+    flex-wrap:wrap;
+  }
+
+  .toolbar button{
+    font-family:Verdana, sans-serif;
+    font-size:1rem;
+    font-weight:bold;
+    padding:9px 16px;
+    border-radius:6px;
+    border:none;
+    cursor:pointer;
+    color:#fff;
+  }
+
+  #printBtn{ background:var(--sage); }
+  #printBtn:hover{ background:#48594c; }
+  #resetBtn{ background:var(--orange-deep); }
+  #resetBtn:hover{ background:var(--orange-deep-hover); }
+
+  section.exam-block{
+    margin-bottom:32px;
+  }
+
+  .block-header{
+    border-radius:10px 10px 0 0;
+    padding:14px 20px;
+    color:var(--ink);
+  }
+
+  .block-header h2{
+    font-family:Georgia, serif;
+    font-weight:bold;
+    margin:0 0 4px;
+    font-size:1.25rem;
+  }
+
+  .block-header p{
+    margin:0;
+    font-size:1rem;
+  }
+
+  .block-1 .block-header{ background:var(--teal); }
+  .block-2 .block-header{ background:var(--rose); }
+  .block-3 .block-header{ background:var(--orange); }
+  .block-4 .block-header{ background:var(--gold); }
+
+  .block-body{
+    background:var(--card-bg);
+    border:1px solid var(--border);
+    border-top:none;
+    border-radius:0 0 10px 10px;
+    padding:6px 20px 10px;
+  }
+
+  .info-banner{
+    margin:14px 0;
+    padding:12px 16px;
+    border-radius:8px;
+    font-size:1rem;
+    border-left:5px solid var(--periwinkle);
+    background:#F1F6FB;
+  }
+
+  .info-banner strong{ color:var(--sage); }
+
+  .item-card{
+    border-bottom:1px solid var(--border);
+    padding:16px 0;
+  }
+
+  .item-card:last-child{ border-bottom:none; }
+
+  .item-card h3{
+    font-family:Georgia, serif;
+    font-size:1.02rem;
+    margin:0 0 6px;
+  }
+
+  .badges-row{ margin-bottom:8px; }
+
+  ul.task-list{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+
+  ul.task-list li{
+    margin:4px 0;
+  }
+
+  ul.task-list label{
+    display:flex;
+    align-items:flex-start;
+    gap:9px;
+    cursor:pointer;
+    font-size:1rem;
+  }
+
+  ul.task-list input[type="checkbox"]{
+    margin-top:3px;
+    width:17px;
+    height:17px;
+    accent-color:var(--sage);
+    flex-shrink:0;
+    cursor:pointer;
+  }
+
+  ul.task-list input[type="checkbox"]:checked + span{
+    text-decoration:line-through;
+    color:var(--muted);
+  }
+
+  footer.final-note{
+    max-width:880px;
+    margin:0 auto;
+    padding:10px 20px 40px;
+    font-size:1rem;
+    color:#555;
+  }
+
+  @media print{
+    .toolbar, .save-note{ display:none; }
+    body{ background:#fff; }
+    .block-header{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  }
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<header class="page-header">
+  <h1>Managerial Accounting</h1>
+  <p class="subtitle">Course Checklist – Summer 2026</p>
+</header>
+
+<main id="main-content">
+
+  <div class="save-note">
+    <strong>Your progress is saved automatically</strong> in this browser on this device. If you switch browsers, clear your browser data, or open this file on a different device, your checkmarks will not carry over. To preserve your progress, use the same browser on the same device each time you open this file.
+  </div>
+
+  <div class="badge-key">
+    <h2>Badge key</h2>
+    <span class="badge due">Assignment due date</span>
+    <span class="badge info">Informational date</span>
+    <span class="badge exam">Exam due date</span>
+    <span class="badge final">Final Exam due date</span>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-label">
+      <span id="progressText">0 of 0 tasks checked</span>
+      <span id="progressPercent">0%</span>
+    </div>
+    <div class="progress-bar-track">
+      <div class="progress-bar-fill" id="progressFill"></div>
+    </div>
+  </div>
+
+  <div class="toolbar">
+    <button id="printBtn" type="button">Print checklist</button>
+    <button id="resetBtn" type="button">Reset all</button>
+  </div>
+
+  <!-- BLOCK 1 -->
+  <section class="exam-block block-1">
+    <div class="block-header">
+      <h2>Section 1 — Chapters 1–3</h2>
+      <p>The Launch Brief: building your managerial mindset before Exam 1 · Hard deadline 7/19/26</p>
+    </div>
+    <div class="block-body">
+
+      <div class="item-card">
+        <h3>Introduction / Start Here Module</h3>
+        <div class="badges-row"><span class="badge due">Due 7/15</span> <span class="badge info">Census 7/16</span></div>
+        <ul class="task-list">
+          <li><label><input type="checkbox" data-id="intro-1"><span>Review course introduction and syllabus materials</span></label></li>
+          <li><label><input type="checkbox" data-id="intro-2"><span>Complete Start Here Module in Canvas</span></label></li>
+        </ul>
+        <div class="info-banner" style="margin-bottom:0;">
+          <strong>Census Date is 7/16/26.</strong> Completing this module is what marks you as attending the course, so don't skip it even if it feels like a formality.
+        </div>
+      </div>
+
+      <div class="item-card">
+        <h3>Chapter 1 — Introduction to Managerial Accounting</h3>
+        <div class="badges-row"><span class="badge due">Due 7/17</span></div>
+        <ul class="task-list">
+          <li><label><input type="checkbox" data-id="ch1-1"><span>Review chapter notes/video in module</span></label></li>
+          <li><label><input type="checkbox" data-id="ch1-2"><span>Complete Chapter 1 assignment in MyLab</span></label></li>
+        </ul>
+      </div>
+
+      <div class="item-card">
+        <h3>Chapter 2 — Job Order Costing</h3>
+        <div class="badges-row"><span class="badge due">Due 7/17</span></div>
+        <ul class="task-list">
+          <li><label><input type="checkbox" data-id="ch2-1"><span>Review chapter notes/video in module</span></label></li>
+          <li><label><input type="checkbox" data-id="ch2-2"><span>Complete Chapter 2 assignment in MyLab</span></label></li>
+        </ul>
+      </div>
+
+      <div class="item-card">
+        <h3>Chapter 3 — Process Costing</h3>
+        <div class="badges-row"><span class="badge due">Due 7/17</span></div>
+        <ul class="task-list">
+          <li><label><input type="checkbox" data-id="ch3-1"><span>Review chapter notes/video in module</span></label></li>
+          <li><label><input type="checkbox" data-id="ch3-2"><span>Complete Chapter 3 assignment in MyLab</span></label></li>
+        </ul>
+      </div>
+
+      <div class="item-card">
+        <h3>Quiz 1 (Chapters 1–3)</h3>
+        <div class="badges-row"><span class="badge due">Due 7/18</span></div>
+        <ul class="task-list">
+          <li><label><input type="checkbox" data-id="quiz1-1"><span>Complete Quiz 1 in MyLab</span></label></li>
+        </ul>
+      </div>
+
+      <div class="item-card">
+        <h3>Exam 1</h3>
+        <div class="badges-row"><span class="badge exam">Due 7/19</span></div>
+        <ul class="task-list">
+          <li><label><input type="checkbox" data-id="exam1-1"><span>Complete review and study guide</span></label></li>
+          <li><label><input type="checkbox" data-id="exam1-2"><span>Complete Exam 1 in MyLab</span></label></li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- BLOCK 2 -->
+  <section class="exam-block block-2">
+    <div class="block-header">
+      <h2>Section 2 — Chapters 4–7</h2>
+      <p>The Efficiency Audit and the Mid-Term Blueprint, building toward Exam 2 · Hard deadline 7/29/26</p>
+    </div>
+    <div class="block-body">
+
+      <div class="item-card">
+        <h3>Chapter 4 — Lean Management Systems</h3>
+        <div class="badges-row"><span class="badge due">Due 7/27</span></div>
+        <ul class="task-list">
+          <li><label><input type="checkbox" data-id="ch4-1"><span>Review chapter notes/video in module</span></label></li>
+          <li><label><input type="checkbox" data-id="ch4-2"><span>Complete Chapter 4 assignment in MyLab</span></label></li>
+        </ul>
+      </div>
+
+      <div class="item-card">
+        <h3>Chapter 5 — Cost-Volume-Profit Analysis</h3>
+        <div class="badges-row"><span class="badge due">Due 7/27</span></div>
+        <ul class="task-list">
+          <li><label><input type="checkbox" data-id="ch5-1"><span>Review chapter notes/video in module</span></label></li>
+          <li><label><input type="checkbox" data-id="ch5-2"><span>Complete Chapter 5 assignment in MyLab</span></label></li>
+        </ul>
+      </div>
+
+      <div class="item-card">
+        <h3>Quiz 2 (Chapters 4–5)</h3>
+        <div class="badges-row"><span class="badge due">Due 7/27</span></div>
+        <ul class="task-list">
+          <li><label><input type="checkbox" data-id="quiz2-1"><span>Complete Quiz 2 in MyLab</span></label></li>
+        </ul>
+      </div>
+
+      <div class="item-card">
+        <h3>Chapter 6 — Variable Costing</h3>
+        <div class="badges-row"><span class="badge due">Due 7/27</span></div>
+        <ul class="task-list">
+          <li><label><input type="checkbox" data-id="ch6-1"><span>Review chapter notes/video in module</span></label></li>
+          <li><label><input type="checkbox" data-id="ch6-2"><span>Complete Chapter 6 assignment in MyLab</span></label></li>
+        </ul>
+      </div>
+
+      <div class="item-card">
+        <h3>Chapter 7 — Master Budgets</h3>
+        <div class="badges-row"><span class="badge due">Due 7/27</span></div>
+        <ul class="task-list">
+          <li><label><input type="checkbox" data-id="ch7-1"><span>Review chapter notes/video in module</span></label></li>
+          <li><label><input type="checkbox" data-id="ch7-2"><span>Complete Chapter 7 assignment in MyLab</span></label></li>
+        </ul>
+      </div>
+
+      <div class="item-card">
+        <h3>Quiz 3 (Chapters 6–7)</h3>
+        <div class="badges-row"><span class="badge due">Due 7/27</span></div>
+        <ul class="task-list">
+          <li><label><input type="checkbox" data-id="quiz3-1"><span>Complete Quiz 3 in MyLab</span></label></li>
+        </ul>
+      </div>
+
+      <div class="info-banner">
+        <strong>Last Day to Drop with a 'W':</strong> 7/28/26. If you have any concerns about your standing, contact your instructor immediately.
+      </div>
+
+      <div class="item-card">
+        <h3>Exam 2</h3>
+        <div class="badges-row"><span class="badge exam">Due 7/29</span></div>
+        <ul class="task-list">
+          <li><label><input type="checkbox" data-id="exam2-1"><span>Complete review and study guide</span></label></li>
+          <li><label><input type="checkbox" data-id="exam2-2"><span>Complete Exam 2 in MyLab</span></label></li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- BLOCK 3 -->
+  <section class="exam-block block-3">
+    <div class="block-header">
+      <h2>Section 3 — Chapters 8–11</h2>
+      <p>The Expansion Shake-Up and the Strategy Board, building toward Exam 3 · Hard deadline 8/13/26</p>
+    </div>
+    <div class="block-body">
+
+      <div class="item-card">
+        <h3>Chapter 8 — Flexible Budgets and Standard Costing</h3>
+        <div class="badges-row"><span class="badge due">Due 8/11</span></div>
+        <ul class="task-list">
+          <li><label><input type="checkbox" data-id="ch8-1"><span>Review chapter notes/video in module</span></label></li>
+          <li><label><input type="checkbox" data-id="ch8-2"><span>Complete Chapter 8 assignment in MyLab</span></label></li>
+        </ul>
+      </div>
+
+      <div class="item-card">
+        <h3>Chapter 9 — Responsibility Costing and Performance Evaluation</h3>
+        <div class="badges-row"><span class="badge due">Due 8/11</span></div>
+        <ul class="task-list">
+          <li><label><input type="checkbox" data-id="ch9-1"><span>Review chapter notes/video in module</span></label></li>
+          <li><label><input type="checkbox" data-id="ch9-2"><span>Complete Chapter 9 assignment in MyLab</span></label></li>
+        </ul>
+      </div>
+
+      <div class="item-card">
+        <h3>Chapter 10 — Short-Term Business Decisions</h3>
+        <div class="badges-row"><span class="badge due">Due 8/11</span></div>
+        <ul class="task-list">
+          <li><label><input type="checkbox" data-id="ch10-1"><span>Review chapter notes/video in module</span></label></li>
+          <li><label><input type="checkbox" data-id="ch10-2"><span>Complete Chapter 10 assignment in MyLab</span></label></li>
+        </ul>
+      </div>
+
+      <div class="item-card">
+        <h3>Quiz 4 (Chapters 8–10)</h3>
+        <div class="badges-row"><span class="badge due">Due 8/11</span></div>
+        <ul class="task-list">
+          <li><label><input type="checkbox" data-id="quiz4-1"><span>Complete Quiz 4 in MyLab</span></label></li>
+        </ul>
+      </div>
+
+      <div class="item-card">
+        <h3>Chapter 11 — Capital Investment Decisions</h3>
+        <div class="badges-row"><span class="badge due">Due 8/11</span></div>
+        <ul class="task-list">
+          <li><label><input type="checkbox" data-id="ch11-1"><span>Review chapter notes/video in module</span></label></li>
+          <li><label><input type="checkbox" data-id="ch11-2"><span>Complete Chapter 11 assignment in MyLab</span></label></li>
+        </ul>
+      </div>
+
+      <div class="item-card">
+        <h3>Exam 3</h3>
+        <div class="badges-row"><span class="badge exam">Due 8/13</span></div>
+        <ul class="task-list">
+          <li><label><input type="checkbox" data-id="exam3-1"><span>Complete review and study guide</span></label></li>
+          <li><label><input type="checkbox" data-id="exam3-2"><span>Complete Exam 3 in MyLab</span></label></li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- BLOCK 4: FINAL -->
+  <section class="exam-block block-4">
+    <div class="block-header">
+      <h2>The Grand Finale</h2>
+      <p>Comprehensive Final Exam · Due 8/15/26</p>
+    </div>
+    <div class="block-body">
+
+      <div class="item-card">
+        <h3>Final Exam</h3>
+        <div class="badges-row"><span class="badge final">Due 8/15</span></div>
+        <ul class="task-list">
+          <li><label><input type="checkbox" data-id="final-1"><span>Complete comprehensive final review</span></label></li>
+          <li><label><input type="checkbox" data-id="final-2"><span>Complete Final Exam in MyLab</span></label></li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="final-note">
+  Collin College • Managerial Accounting Course Series
+</footer>
+
+<script>
+(function(){
+  var STORAGE_KEY = "mgmtAcctChecklist_v1";
+  var checkboxes = Array.prototype.slice.call(document.querySelectorAll('input[type="checkbox"][data-id]'));
+
+  function loadState(){
+    try{
+      var raw = localStorage.getItem(STORAGE_KEY);
+      return raw ? JSON.parse(raw) : {};
+    }catch(e){
+      return {};
+    }
+  }
+
+  function saveState(state){
+    try{
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }catch(e){}
+  }
+
+  function updateProgress(){
+    var total = checkboxes.length;
+    var checked = checkboxes.filter(function(cb){ return cb.checked; }).length;
+    var pct = total === 0 ? 0 : Math.round((checked / total) * 100);
+    document.getElementById('progressText').textContent = checked + " of " + total + " tasks checked";
+    document.getElementById('progressPercent').textContent = pct + "%";
+    document.getElementById('progressFill').style.width = pct + "%";
+  }
+
+  function applyState(){
+    var state = loadState();
+    checkboxes.forEach(function(cb){
+      cb.checked = !!state[cb.dataset.id];
+    });
+    updateProgress();
+  }
+
+  checkboxes.forEach(function(cb){
+    cb.addEventListener('change', function(){
+      var state = loadState();
+      state[cb.dataset.id] = cb.checked;
+      saveState(state);
+      updateProgress();
+    });
+  });
+
+  document.getElementById('printBtn').addEventListener('click', function(){
+    window.print();
+  });
+
+  document.getElementById('resetBtn').addEventListener('click', function(){
+    if(confirm("Reset all checkmarks? This cannot be undone.")){
+      checkboxes.forEach(function(cb){ cb.checked = false; });
+      saveState({});
+      updateProgress();
+    }
+  });
+
+  applyState();
+})();
+</script>
+
+</body>
+</html>
